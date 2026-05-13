@@ -1,0 +1,14 @@
+{
+  "name": "ai-challenge-7days",
+  "version": "1.0.0",
+  "description": "7 Days AI Challenge Website",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

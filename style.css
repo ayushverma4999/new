@@ -1,0 +1,145 @@
+:root {
+    --bg-color: #050505;
+    --accent-color: #00f2ff;
+    --text-color: #ffffff;
+    --secondary-text: #a0a0a0;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* Loader */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-color);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.loader-content {
+    text-align: center;
+    width: 300px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #fff, var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.5));
+}
+
+.progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+#loader-text {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+/* Hero Section */
+.hero.scroll-container {
+    height: 500vh; /* This defines the scroll length */
+    position: relative;
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#scroll-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(0); /* Hardware acceleration */
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    z-index: 1;
+    will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
+    filter: contrast(1.1) brightness(1.1); /* Subtle boost for clarity */
+}
+
+.content-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-headline {
+    text-align: center;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 900px;
+    padding: 2rem;
+    z-index: 10;
+}
+
+.hero-headline h1 {
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+
+/* Scroll Height replacement - no longer needed since .hero handles it */
+
+/* Remaining sections background */
+.bg-background {
+    background-color: var(--bg-color) !important;
+    z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-text h1 {
+        font-size: 3rem;
+    }
+    .section-text p {
+        font-size: 1rem;
+    }
+}
