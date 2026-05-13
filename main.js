@@ -28,7 +28,7 @@ const preloadImages = () => {
             imagesLoaded++;
             const percent = (imagesLoaded / frameCount) * 100;
             progress.style.width = `${percent}%`;
-            
+
             if (imagesLoaded === frameCount) {
                 setTimeout(() => {
                     loader.style.opacity = '0';
@@ -51,7 +51,7 @@ const setupCanvas = (img) => {
     canvas.style.height = '100%';
     canvas.style.objectFit = 'contain';
     context.scale(scale, scale);
-    
+
     // Quality optimizations
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = 'high';
@@ -78,12 +78,12 @@ function animate() {
     // Lerp the frame index
     const diff = airbnbCanvas.targetFrame - airbnbCanvas.frame;
     airbnbCanvas.frame += diff * lerpFactor;
-    
+
     // Only render if there's a significant change
     if (Math.abs(diff) > 0.01) {
         render();
     }
-    
+
     requestAnimationFrame(animate);
 }
 
@@ -91,19 +91,19 @@ function animate() {
 window.addEventListener('scroll', () => {
     const hero = document.querySelector('.hero');
     if (!hero) return;
-    
+
     const scrollTop = window.pageYOffset;
     const heroHeight = hero.offsetHeight - window.innerHeight;
-    
+
     // Calculate scroll fraction only within the hero section
     let scrollFraction = scrollTop / heroHeight;
-    
+
     // Clamp fraction between 0 and 1
     scrollFraction = Math.max(0, Math.min(1, scrollFraction));
-    
+
     // Update target frame for lerping
     airbnbCanvas.targetFrame = scrollFraction * (frameCount - 1);
-    
+
     // Navbar background transition
     const nav = document.getElementById('main-nav');
     if (scrollTop > 50) {
@@ -113,7 +113,7 @@ window.addEventListener('scroll', () => {
         nav.classList.add('bg-surface/10');
         nav.classList.remove('bg-surface/80');
     }
-    
+
     // Smoothly fade out the hero headline
     // Fades from 1 to 0 between 0% and 30% scroll
     const headline = document.querySelector('.hero-headline');
@@ -121,11 +121,11 @@ window.addEventListener('scroll', () => {
         const fadeStart = 0;
         const fadeEnd = 0.3;
         let opacity = 1;
-        
+
         if (scrollFraction > fadeStart) {
             opacity = 1 - ((scrollFraction - fadeStart) / (fadeEnd - fadeStart));
         }
-        
+
         headline.style.opacity = Math.max(0, opacity);
         headline.style.transform = `translateY(${Math.max(0, (1 - opacity) * 50)}px)`;
         headline.style.filter = `blur(${Math.max(0, (1 - opacity) * 10)}px)`;
@@ -135,4 +135,8 @@ window.addEventListener('scroll', () => {
 // Removed updateActiveText as we now use a single headline with scroll-based opacity
 
 // Initial call
+window.addEventListener('resize', () => {
+    if (images[0]) setupCanvas(images[0]);
+    render();
+});
 preloadImages();
