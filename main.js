@@ -43,19 +43,7 @@ const preloadImages = () => {
 };
 
 // Set canvas dimensions with high-DPI support
-const setupCanvas = (img) => {
-    const scale = window.devicePixelRatio || 1;
-    canvas.width = img.width * scale;
-    canvas.height = img.height * scale;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.objectFit = 'contain';
-    context.scale(scale, scale);
 
-    // Quality optimizations
-    context.imageSmoothingEnabled = true;
-    context.imageSmoothingQuality = 'high';
-};
 
 const img = new Image();
 img.src = currentFrame(1);
@@ -69,7 +57,7 @@ function render() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     const frameToDraw = images[Math.round(airbnbCanvas.frame)] || images[0];
     if (frameToDraw) {
-        context.drawImage(frameToDraw, 0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
+        context.drawImage(frameToDraw, 0, 0, window.innerWidth, window.innerHeight);
     }
 }
 
