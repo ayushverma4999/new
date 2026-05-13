@@ -73,7 +73,8 @@ body {
 
 /* Hero Section */
 .hero.scroll-container {
-    height: 500vh; /* This defines the scroll length */
+    height: 500vh;
+    /* This defines the scroll length */
     position: relative;
 }
 
@@ -89,14 +90,16 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translateZ(0); /* Hardware acceleration */
+    transform: translate(-50%, -50%) translateZ(0);
+    /* Hardware acceleration */
     max-width: 100vw;
     max-height: 100vh;
     object-fit: contain;
     z-index: 1;
     will-change: transform;
     image-rendering: -webkit-optimize-contrast;
-    filter: contrast(1.1) brightness(1.1); /* Subtle boost for clarity */
+    filter: contrast(1.1) brightness(1.1);
+    /* Subtle boost for clarity */
 }
 
 .content-overlay {
@@ -139,7 +142,27 @@ body {
     .section-text h1 {
         font-size: 3rem;
     }
+
     .section-text p {
         font-size: 1rem;
     }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .sticky-wrapper {
+        height: 100vw;
+    }
+
+    .hero-headline h1 {
+        font-size: clamp(1.8rem, 8vh, 3rem);
+    }
+
+    .hero.scroll-container {
+        height: 300vh;
+    }
+}
+
+footer.bg-surface-container-lowest {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
 }
